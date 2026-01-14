@@ -1,0 +1,443 @@
+:root {
+    /* Default Dark Theme Colors */
+    --bg-color-primary: #0E1117; /* Default Streamlit Dark Bg */
+    --bg-color-secondary: #262730; /* Default Streamlit Dark Secondary */
+    --text-color-primary: #FAFAFA;
+    --text-color-secondary: #B0B0B0;
+    
+    --sidebar-bg: #121212;
+    --card-bg: #1E1E1E;
+    --card-border: #333333;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    
+    --accent-color: #BB86FC;
+    --accent-color-hover: rgba(187, 134, 252, 0.1);
+    
+    --metric-bg: #2D2D2D;
+    --metric-border: #404040;
+    --metric-divider: #555555;
+    
+    --header-text-color: #FFFFFF;
+    --card-header-text: #121212;
+}
+
+/* Card-like Styling */
+div[data-testid="stVerticalBlockBorderWrapper"] > div {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px var(--card-shadow);
+    padding: 0px !important; /* Remove default padding to allow header to touch edges */
+    padding-bottom: 16px !important;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: visible !important; /* Allow elements to overflow (like the delete button) */
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] > div:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Card Header Background */
+.card-header-bg {
+    background-color: var(--accent-color);
+    padding: 0 16px;
+    margin-bottom: 0px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 80px; /* Altura do header roxo */
+    z-index: 0;
+}
+
+.card-header-text {
+    color: var(--card-header-text);
+    font-weight: 900;
+    font-size: 1.8rem;
+    margin: 0;
+    z-index: 1;
+    position: relative; /* Volta ao fluxo normal (dentro da coluna) */
+    /* line-height removido para corrigir alinhamento vertical */
+    padding-left: 0px; /* Padding controlado pela coluna */
+    white-space: nowrap;
+}
+
+/* Expander Styling */
+.streamlit-expanderHeader {
+    background-color: var(--metric-bg) !important;
+    color: var(--text-color-primary) !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--metric-border);
+}
+
+/* Segmented Metrics Bar */
+.metrics-container {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--metric-bg);
+    border-radius: 50px; /* Fully rounded like a pill/button */
+    padding: 0; /* Remove padding to make items touch edges */
+    margin-bottom: 25px;
+    border: 1px solid var(--metric-border);
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    overflow: hidden; /* For rounded corners clipping */
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* Distribute space evenly */
+    text-align: center;
+    padding: 12px 0;
+    transition: background-color 0.2s;
+    cursor: default;
+}
+
+.metric-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--text-color-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.metric-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+    letter-spacing: -0.5px;
+}
+
+.metric-divider {
+    width: 2px;
+    height: 40px; /* Increased height */
+    background-color: var(--metric-divider); /* Solid gray */
+    margin: 0;
+    opacity: 1;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.metric-delta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Sidebar Styling */
+section[data-testid="stSidebar"] {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--card-border);
+}
+
+/* Buttons Styling - Global Enforcement */
+div[data-testid="stVerticalBlockBorderWrapper"] div.stButton > button,
+div[data-testid="stVerticalBlock"] div.stButton > button {
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: var(--bg-color-secondary) !important;
+    color: var(--text-color-primary) !important;
+    border: 1px solid var(--metric-border) !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] div.stButton > button:hover,
+div[data-testid="stVerticalBlock"] div.stButton > button:hover {
+    border-color: var(--accent-color) !important;
+    color: var(--accent-color) !important;
+}
+
+/* Primary Button Styling Override */
+div[data-testid="stVerticalBlockBorderWrapper"] div.stButton > button[kind="primary"],
+div[data-testid="stVerticalBlock"] div.stButton > button[kind="primary"] {
+    background-color: var(--accent-color) !important;
+    color: #FFFFFF !important; /* Always white for primary */
+    border: none !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] div.stButton > button[kind="primary"]:hover,
+div[data-testid="stVerticalBlock"] div.stButton > button[kind="primary"]:hover {
+    background-color: var(--accent-color) !important;
+    color: #FFFFFF !important;
+    opacity: 0.9;
+}
+
+/* Sidebar Menu Buttons Override */
+section[data-testid="stSidebar"] .stButton button {
+    background-color: transparent !important; /* Let sidebar bg show through */
+    color: var(--text-color-primary) !important;
+    border: 1px solid transparent !important;
+    width: 100%;
+    text-align: left !important;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start !important;
+    padding-left: 16px;
+}
+
+section[data-testid="stSidebar"] .stButton button:hover {
+    background-color: var(--accent-color-hover) !important;
+    border-color: var(--accent-color) !important;
+    color: var(--text-color-primary) !important;
+}
+
+section[data-testid="stSidebar"] .stButton button[kind="primary"] {
+    background-color: var(--accent-color) !important;
+    color: #FFFFFF !important; /* Always white for active sidebar item */
+    border: none !important;
+}
+
+/* Ensure inner content of sidebar buttons is also left-aligned */
+section[data-testid="stSidebar"] .stButton button > div {
+    display: flex;
+    justify-content: flex-start !important;
+    width: 100%;
+}
+
+section[data-testid="stSidebar"] .stButton button p {
+    text-align: left !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Headers */
+h1, h2, h3 {
+    color: var(--header-text-color) !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Utility for Card Content Padding */
+.card-content {
+    padding: 0 16px 8px 16px;
+}
+
+/* Botão transparente para o header - usando seletor de classe parcial na KEY para isolamento total */
+div[class*="st-key-add_"] {
+    display: flex !important;
+    width: fit-content !important;
+    margin-left: auto !important; /* Empurra para a direita */
+    padding-top: 20px !important; /* Alinhamento vertical */
+    padding-right: 0.2em !important; /* Ajuste fino lateral */
+    z-index: 2; /* Ensure it's above the background */
+}
+
+/* Estilo do botão DENTRO desse contexto específico (Aportar) */
+/* Target button directly using the same class used for positioning, ensuring match */
+div[class*="st-key-add"] button {
+    background-color: rgba(255,255,255,0.15) !important;
+    border: 1px solid rgba(255,255,255,0.5) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    margin-right: 0 !important;
+    width: auto !important;
+}
+
+/* IMPORTANT: Override global p tag color */
+div[class*="st-key-add"] button p {
+    color: #FFFFFF !important;
+}
+
+div[class*="st-key-add"] button:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+div[class*="st-key-add"] button:hover p {
+    color: #FFFFFF !important;
+}
+
+/* Expander Header Styling fix - Robust Selectors */
+/* Target both potential DOM structures (direct details or wrapped) */
+details[data-testid="stExpander"],
+div[data-testid="stExpander"] details {
+    background-color: transparent !important;
+    border-color: var(--metric-border) !important;
+    color: var(--text-color-primary) !important;
+    border-radius: 8px !important;
+}
+
+/* HIGH SPECIFICITY OVERRIDE for Summary Background */
+body .stApp div[data-testid="stVerticalBlockBorderWrapper"] details[data-testid="stExpander"],
+body .stApp div[data-testid="stVerticalBlock"] details[data-testid="stExpander"],
+body .stApp details[data-testid="stExpander"],
+body .stApp div[data-testid="stExpander"] details {
+    background-color: var(--metric-bg) !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--metric-border) !important;
+}
+
+body .stApp div[data-testid="stVerticalBlockBorderWrapper"] details[data-testid="stExpander"] > summary,
+body .stApp div[data-testid="stVerticalBlock"] details[data-testid="stExpander"] > summary,
+body .stApp details[data-testid="stExpander"] > summary,
+body .stApp div[data-testid="stExpander"] details > summary {
+    background-color: transparent !important; /* Inherit from details */
+    color: var(--text-color-primary) !important;
+    border-radius: 8px !important;
+    border: none !important; /* Border moved to details */
+    transition: background-color 0.2s ease;
+    padding-left: 10px !important;
+}
+
+/* Force state persistence (Hover, Focus, Active, Open) */
+body .stApp div[data-testid="stVerticalBlockBorderWrapper"] details[data-testid="stExpander"]:hover,
+body .stApp div[data-testid="stVerticalBlock"] details[data-testid="stExpander"]:hover,
+body .stApp details[data-testid="stExpander"]:hover,
+body .stApp div[data-testid="stExpander"] details:hover {
+     border-color: var(--accent-color) !important;
+}
+
+body .stApp div[data-testid="stVerticalBlockBorderWrapper"] details[data-testid="stExpander"] > summary:hover,
+body .stApp div[data-testid="stVerticalBlock"] details[data-testid="stExpander"] > summary:hover,
+body .stApp details[data-testid="stExpander"] > summary:hover,
+body .stApp div[data-testid="stExpander"] details > summary:hover,
+body .stApp details[data-testid="stExpander"] > summary:focus,
+body .stApp div[data-testid="stExpander"] details > summary:focus,
+body .stApp details[data-testid="stExpander"][open] > summary,
+body .stApp div[data-testid="stExpander"] details[open] > summary {
+    background-color: var(--metric-bg) !important;
+    color: var(--accent-color) !important;
+}
+
+/* Force inner elements of summary to be transparent */
+details[data-testid="stExpander"] > summary > div,
+div[data-testid="stExpander"] details > summary > div {
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+/* Fix SVG arrow color */
+details[data-testid="stExpander"] > summary svg,
+div[data-testid="stExpander"] details > summary svg {
+    fill: currentColor !important; /* Use inherited color (text or accent) */
+    color: currentColor !important;
+}
+
+/* Expander Content */
+details[data-testid="stExpander"] > div,
+div[data-testid="stExpander"] details > div {
+    color: var(--text-color-primary) !important;
+}
+
+/* Remove legacy classes if they conflict */
+/* .streamlit-expanderHeader { ... } */
+
+/* --- Input Elements Standardization --- */
+/* Forçar cores de inputs para seguir o tema, garantindo legibilidade */
+
+/* Text Inputs and Number Inputs */
+div[data-baseweb="input"] > div {
+    background-color: var(--bg-color-secondary) !important;
+    color: var(--text-color-primary) !important;
+    border-color: var(--metric-border) !important;
+}
+
+/* Fix Number Input Step Buttons (+ / -) */
+div[data-testid="stNumberInput"] button {
+    background-color: var(--bg-color-secondary) !important;
+    color: var(--text-color-primary) !important;
+    border-color: var(--metric-border) !important;
+    border: 1px solid var(--metric-border) !important;
+}
+
+div[data-testid="stNumberInput"] button:hover {
+    background-color: var(--metric-border) !important;
+    color: var(--accent-color) !important;
+}
+
+/* Fix Form Action Buttons (Confirm/Cancel) inside stForm */
+div[data-testid="stForm"] button {
+    background-color: var(--bg-color-secondary) !important;
+    color: var(--text-color-primary) !important;
+    border: 1px solid var(--metric-border) !important;
+}
+
+div[data-testid="stForm"] button:hover {
+    border-color: var(--accent-color) !important;
+    color: var(--accent-color) !important;
+}
+
+/* Primary Form Button (Submit) */
+div[data-testid="stForm"] button[kind="primary"] {
+    background-color: var(--accent-color) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+div[data-testid="stForm"] button[kind="primary"]:hover {
+    background-color: var(--accent-color) !important;
+    opacity: 0.9;
+}
+
+input[type="text"], input[type="number"] {
+    color: var(--text-color-primary) !important;
+    caret-color: var(--text-color-primary) !important;
+}
+
+/* Selectbox */
+div[data-baseweb="select"] {
+    cursor: pointer !important;
+}
+
+div[data-baseweb="select"] > div {
+    background-color: var(--bg-color-secondary) !important;
+    color: var(--text-color-primary) !important;
+    border-color: var(--metric-border) !important;
+    cursor: pointer !important;
+}
+
+div[data-baseweb="select"] span {
+    color: var(--text-color-primary) !important;
+}
+
+/* Ensure label doesn't change cursor to text selection */
+div[data-testid="stWidgetLabel"] label {
+    cursor: default !important;
+}
+
+/* Selectbox Dropdown Options */
+ul[data-baseweb="menu"] {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+}
+
+li[data-baseweb="option"] {
+    color: var(--text-color-primary) !important;
+}
+
+/* Checkbox and Radio labels */
+label[data-baseweb="checkbox"] p, 
+label[data-baseweb="radio"] p {
+    color: var(--text-color-primary) !important;
+}
+
+/* Expander Label */
+details[data-testid="stExpander"] > summary p,
+div[data-testid="stExpander"] details > summary p {
+    color: inherit !important;
+}
+
+/* --- Table Styling (Glide Data Grid & DataFrame) --- */
+
+/* Fix for Altair/Vega Charts Background */
+/* We can't easily style canvas content via CSS, but we can style the container */
+div[data-testid="stAltairChart"] {
+    background-color: transparent !important;
+}
+
+canvas {
+    color-scheme: light dark; /* Allow browser to adapt if supported */
+}

@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+build/
+dist/
+.idea/
+*.spec
+users.json
+portfolio.json
+transactions.json
+.streamlit/secrets.toml

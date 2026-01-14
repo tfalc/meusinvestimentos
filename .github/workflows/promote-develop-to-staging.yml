@@ -1,0 +1,21 @@
+name: Promote Develop to Staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "develop"
+          destination_branch: "staging"
+          pr_title: "Promote Develop to Staging"
+          pr_body: "Automated PR to promote changes from develop to staging."
+          github_token: ${{ secrets.GITHUB_TOKEN }}

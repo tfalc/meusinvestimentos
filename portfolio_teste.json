@@ -1,0 +1,27 @@
+[
+    {
+        "ticker": "PLAG11",
+        "quantity": 11,
+        "average_price": 48.68615384615385
+    },
+    {
+        "ticker": "VGHF11",
+        "quantity": 32,
+        "average_price": 9.85
+    },
+    {
+        "ticker": "MXRF11",
+        "quantity": 24,
+        "average_price": 9.97
+    },
+    {
+        "ticker": "GARE11",
+        "quantity": 6,
+        "average_price": 9.13
+    },
+    {
+        "ticker": "SNEL11",
+        "quantity": 4,
+        "average_price": 9.27
+    }
+]

@@ -1,0 +1,21 @@
+name: Promote Staging to Main
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "staging"
+          destination_branch: "main"
+          pr_title: "Promote Staging to Main"
+          pr_body: "Automated PR to promote changes from staging to main."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
