@@ -1,0 +1,21 @@
+name: Open PR Feature to Develop
+
+on:
+  push:
+    branches:
+      - 'feat*'
+      - 'feature*'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "develop"
+          pr_title: "Feature: ${{ github.ref_name }}"
+          pr_body: "Automated PR for feature branch ${{ github.ref_name }} to develop."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
